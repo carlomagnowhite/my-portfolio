@@ -27,11 +27,11 @@ import { DividerModule } from 'primeng/divider';
     TimelineModule,
     ImageModule,
     TagModule,
-    DividerModule
+    DividerModule,
   ],
   providers: [MessageService],
   templateUrl: './home.component.html',
-  styleUrl: './home.component.css'
+  styleUrl: './home.component.css',
 })
 export class HomeComponent {
   visible: boolean = false;
@@ -43,33 +43,64 @@ export class HomeComponent {
 
   constructor() {
     this.events = [
-        {
-          date: '2025 - Present',
-          icon: 'pi pi-shopping-cart',
-          color: '#9C27B0',
-          position: 'Software Engineer',
-          place: 'Cibertec',
-          responsibilities: ['Development of software solutions', 'Development of software solutions', 'Development of software solutions'],
-          technologies: ['Angular', 'Node.js', 'MongoDB']
-        },
-        {
-          date: '2023 September - 2023 December',
-          icon: 'pi pi-code',
-          position: 'Backend Developer',
-          place: 'Technical University of Ambato',
-          project: 'Soccer tournament management system',
-          responsibilities: ['Database design, administration and optimization', 'PL/SQL development'],
-          technologies: ['TypeScript', 'PostgreSQL', 'PL/SQL']
-        },
-        {
-          date: '2023 April - 2023 June',
-          icon: 'pi pi-code',
-          position: 'Frontend Developer',
-          place: 'Technical University of Ambato',
-          project: 'FISEI - Centro de transferencia tecnológica courses information web page',
-          responsibilities: ['Web page design and development', 'Web page maintenance and updates'],
-          technologies: ['HTML', 'CSS - Bootstrap', 'JavaScript', 'PHP']
-        }
+      {
+        date: '2025 March - Present',
+        icon: 'pi pi-code',
+        project: 'SISREC V2',
+        position: 'Backend Developer',
+        place:
+          'Empresa Eléctrica Ambato Regional Centro Norte S.A. (EEASA)',
+        responsibilities: [
+          'Client communication and requirements analysis',
+          'API development in Spring Boot with Java',
+          'Database design, optimization and implementation',
+          'API documentation',
+          'PL/SQL development in Oracle Database',
+          'Web Socket implementation for notifications in real time',
+          'Integration with external services in Angular',
+        ],
+        technologies: ['Spring Boot', 'Java', 'Oracle Database', 'PL/SQL', 'Web Socket', 'Angular'],
+      },
+      {
+        date: '2024 September - 2024 December',
+        icon: 'pi pi-code',
+        project: 'Electronic invoice microservice',
+        position: 'Backend Developer',
+        place:
+          'SAN VICENTE YACULOMA Y BELLAVISTA EL ROSARIO WATER MANAGEMENT GROUP',
+        responsibilities: [
+          'Invoice generation and management',
+          'Invoice validation and approval',
+          'Invoice mail notifications (PDF and XML)',
+          'Sending electronic invoices to SRI servers to be validated',
+        ],
+        technologies: ['Node.js', 'NestJS', 'TypeScript'],
+      },
+      {
+        date: '2023 September - 2023 December',
+        icon: 'pi pi-code',
+        position: 'Backend Developer',
+        place: 'Technical University of Ambato',
+        project: 'Soccer tournament management system',
+        responsibilities: [
+          'Database design, administration and optimization',
+          'PL/SQL development',
+        ],
+        technologies: ['TypeScript', 'PostgreSQL', 'PL/SQL'],
+      },
+      {
+        date: '2023 April - 2023 June',
+        icon: 'pi pi-code',
+        position: 'Frontend Developer',
+        place: 'Technical University of Ambato',
+        project:
+          'FISEI - Centro de transferencia tecnológica courses information web page',
+        responsibilities: [
+          'Web page design and development',
+          'Web page maintenance and updates',
+        ],
+        technologies: ['HTML', 'CSS - Bootstrap', 'JavaScript', 'PHP'],
+      },
     ];
   }
 }
