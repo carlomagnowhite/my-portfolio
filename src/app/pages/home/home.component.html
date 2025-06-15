@@ -1,31 +1,21 @@
-<p-toast></p-toast>
-
-<div class="card flex justify-content-center">
-  <p-button label="Mostrar Diálogo" (click)="showDialog()"></p-button>
-</div>
-
-<p-dialog header="Diálogo Animado" [(visible)]="visible" [style]="{width: '50vw'}" [draggable]="false"
-  [resizable]="false" [modal]="true">
-  <p>Este es un diálogo con animaciones de entrada y salida.</p>
-  <ng-template pTemplate="footer">
-    <p-button icon="pi pi-check" label="Aceptar" (click)="visible=false"></p-button>
-  </ng-template>
-</p-dialog>
-
 <div class="flex w-full">
   <div class="w-full mx-3 md:mx-5 lg:mx-6 xl:mx-8">
-    <p-card header="Hi, my name is" styleClass="mt-4">
+    <p-card styleClass="mt-4">
       <div class="grid">
         <div class="col-12 md:col-6 flex flex-column justify-content-center">
-          <h1 class="text-6xl font-bold m-2">Mateo Díaz Gómez</h1>
+          <h2 class="text-3xl mb-2">Hi, my name is</h2>
+          <h1 class="text-7xl font-bold m-0">Mateo Díaz Gómez</h1>
           <p class="text-xl line-height-3 mb-4">I'm a software engineer with a passion for project development and
-            software development.</p>
+            software development.
           <div class="flex gap-5 mb-2">
             <a href="https://github.com/carlomagnowhite" target="_blank">
-              <i class="pi pi-github" style="font-size: 2.5rem"></i>
+              <i class="devicon-github-original-wordmark" style="font-size: 2.5rem"></i>
+            </a>
+            <a href="https://gitlab.com/matt.diaz.gomez" target="_blank">
+              <i class="devicon-gitlab-plain-wordmark colored" style="font-size: 2.5rem"></i>
             </a>
             <a href="https://www.linkedin.com/in/mateo-díaz-gómez-044966216" target="_blank">
-              <i class="pi pi-linkedin" style="font-size: 2.5rem"></i>
+              <i class="devicon-linkedin-plain colored" style="font-size: 2.5rem"></i>
             </a>
             <a href="mailto:mateo19dg@gmail.com" target="_blank">
               <i class="pi pi-envelope" style="font-size: 2.5rem"></i>
@@ -33,7 +23,7 @@
           </div>
         </div>
         <div class="col-12 md:col-6 flex align-items-center justify-content-center">
-          <p-image src="assets/images/avatar.png" alt="Avatar" width="300" [preview]="true" imageClass="border-round" />
+          <p-image src="assets/images/avatar.png" alt="Avatar" width="400" [preview]="true" imageClass="border-round" />
         </div>
       </div>
     </p-card>
@@ -42,7 +32,7 @@
 
 <div class="flex w-full mb-4">
   <div class="w-full mx-3 md:mx-5 lg:mx-6 xl:mx-8">
-    <p-card header="My timeline" styleClass="mt-4">
+    <p-card header="My experience timeline" styleClass="mt-4">
       <p-timeline [value]="events" align="alternate" [align]="'alternate'">
         <ng-template #marker let-event>
           <span class="flex w-8 h-8 items-center justify-center text-white rounded-full z-10 shadow-sm"
@@ -56,21 +46,26 @@
             <span class="text-sm text-gray-500">{{ event.date }}</span>
             <p-divider>
               <strong>
-                <i class="pi pi-list"></i>
-                Responsabilities
+                🔧 Responsabilities
               </strong>
             </p-divider>
             <p *ngFor="let responsibility of event.responsibilities">
-              <i class="pi pi-circle-on"></i> {{ responsibility }}
+              ✔ {{ responsibility }}
             </p>
             <p-divider>
               <strong>
-                <i class="pi pi-code"></i>
-                Technologies
+                💻 Technologies
               </strong>
             </p-divider>
-            <div class="mt-3">
-              <p-tag *ngFor="let tech of event.technologies" severity="info" [value]="tech" [rounded]="true" />
+            <div class="mt-4">
+              <i *ngFor="let tech of event.technologies"
+              [class]="tech.icon + (tech.colored ? ' colored' : '')"
+              pTooltip="{{tech.tooltip}}"
+              tooltipPosition="top"
+              [attr.aria-label]="tech.tooltip"
+              class="technology-icon"
+              style="font-size: 3.5rem; margin-right: 1rem">
+            </i>
             </div>
           </p-card>
         </ng-template>

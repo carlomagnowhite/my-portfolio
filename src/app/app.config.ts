@@ -6,6 +6,8 @@ import { providePrimeNG } from 'primeng/config';
 import Aura  from '@primeng/themes/aura';
 import { routes } from './app.routes';
 
+
+
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
@@ -18,7 +20,7 @@ export const appConfig: ApplicationConfig = {
         preset: Aura,
         options:{
           prefix: 'p',
-          darkModeSelector: 'system'
+          darkModeSelector: '.dark-theme'
         }
       }
     })

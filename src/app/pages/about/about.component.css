@@ -1,0 +1,22 @@
+.technology-icon {
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+.technology-icon:hover {
+  transform: scale(1.2);
+}
+
+
+@media screen and (max-width: 768px) {
+  .technology-icon {
+    font-size: 2rem !important;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .technology-icon {
+    font-size: 1.5rem !important;
+  }
+}
+
