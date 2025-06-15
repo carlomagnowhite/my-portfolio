@@ -5,6 +5,7 @@
       "destination": "/index.html"
     }
   ],
-  "buildCommand": "ng build --configuration production",
+  "cleanUrls": true,
+  "trailingSlash": false,
   "outputDirectory": "dist/my-portfolio"
 }
