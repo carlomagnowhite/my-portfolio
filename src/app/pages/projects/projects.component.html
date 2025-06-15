@@ -1,35 +1,41 @@
 <div class="flex w-full">
   <div class="w-full mx-3 md:mx-5 lg:mx-6 xl:mx-8">
-    <p-card header="Mis Proyectos" styleClass="mt-4">
+    <h1 class="text-4xl font-bold">My projects 💻</h1>
+    <p-card styleClass="mt-4">
       <div class="grid">
         <div class="col-12 md:col-6 lg:col-4" *ngFor="let project of projects">
-          <p-card [header]="project.name" [subheader]="project.subtitle" styleClass="h-full">
+          <p-card class="project-card" [header]="project.name" [subheader]="project.subtitle" styleClass="h-full shadow-6">
             <ng-template pTemplate="header">
-              <img [src]="project.image" [alt]="project.name" class="w-full">
+              <img [src]="project.image" [alt]="project.name" class="w-full h-full">
             </ng-template>
 
             <p class="line-height-3">{{project.description}}</p>
 
             <p-divider>
-              <strong>Tecnologías</strong>
+              <strong>Technologies</strong>
             </p-divider>
 
-            <div class="flex flex-wrap gap-2 mt-3">
-              <p-chip *ngFor="let tech of project.technologies"
-                      [label]="tech.name"
-                      [style]="{'background-color': tech.color, 'color': 'white'}">
-              </p-chip>
+            <div class="flex flex-wrap justify-content-center gap-2 mt-3" style="font-size: 2.0rem; margin-right: 1rem">
+              <i *ngFor="let tech of project.technologies"
+              [class]="tech.icon + (tech.colored ? ' colored' : '')"
+              pTooltip="{{tech.tooltip}}"
+              tooltipPosition="top">
+            </i>
             </div>
 
             <p-divider></p-divider>
 
             <div class="flex justify-content-between mt-3">
-              <a [href]="project.github" target="_blank" class="p-button p-button-rounded p-button-text">
-                <i class="pi pi-github text-xl"></i>
-              </a>
-              <a [href]="project.demo" target="_blank" class="p-button p-button-rounded p-button-text">
-                <i class="pi pi-external-link text-xl"></i>
-              </a>
+              @if(project.githubToolTip !== '') {
+                <a [href]="project.github" target="_blank" class="p-button p-button-rounded p-button-text" pTooltip="{{project.githubToolTip}}" tooltipPosition="top">
+                  <i class="pi pi-github text-xl"></i>
+                </a>
+              }
+              @if(project.demoToolTip !== '') {
+                <a [href]="project.demo" target="_blank" class="p-button p-button-rounded p-button-text" pTooltip="{{project.demoToolTip}}" tooltipPosition="top">
+                  <i class="pi pi-external-link text-xl"></i>
+                </a>
+              }
             </div>
           </p-card>
         </div>
