@@ -1,14 +1,13 @@
-export interface Technology {
-  name: string;
-  color?: string;
-}
+import { TechStack } from "./TechStack.interface";
 
 export interface Project {
   name: string;
   subtitle: string;
   image: string;
+  technologies: TechStack[];
   description: string;
-  technologies: Technology[];
   github: string;
   demo: string;
+  demoToolTip: string;
+  githubToolTip: string;
 }
