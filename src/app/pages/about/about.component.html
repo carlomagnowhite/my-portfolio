@@ -1,1 +1,79 @@
-<p>about works!</p>
+<div class="flex w-full">
+  <div class="w-full mx-3 md:mx-5 lg:mx-6 xl:mx-8">
+    <p-card styleClass="mt-4 shadow-4" class="text-lg">
+      <div class="grid">
+        <div class="col-12 md:col-6 flex flex-column justify-content-center">
+          <h1 class="text-4xl md:text-6xl font-bold mb-0">About me</h1>
+          <p class="text-lg md:text-xl line-height-3 mb-4">Hi there! 👋 I'm Mateo, a software engineer from Ecuador. I
+            have experience in software backend development (Node.js frameworks and Spring Boot).
+            Always looking for new challenges and opportunities to learn and grow. Excited to work on innovative
+            projects and contribute to our world.
+          </p>
+          <div class="flex gap-3 mt-2">
+            <p-button label="Download CV" icon="pi pi-download" severity="primary"
+              (click)="downloadPdfFromUrl()"></p-button>
+            <p-button label="Contact Me" icon="pi pi-envelope" severity="info" (click)="showDialog('right')"></p-button>
+          </div>
+        </div>
+        <div class="col-12 md:col-6 flex align-items-center justify-content-center mt-6 md:mt-0">
+          <p-image src="assets/images/lofi.png" alt="Developer-Lofi" width="100%" [preview]="true"
+            imageClass="border-round shadow-4" />
+        </div>
+      </div>
+    </p-card>
+  </div>
+</div>
+
+<div class="flex w-full">
+  <div class="w-full mx-3 md:mx-5 lg:mx-6 xl:mx-8">
+    <p-card styleClass="mt-4 shadow-4" class="text-lg">
+      <div class="grid">
+        <div class="col-12">
+          <h1 class="text-4xl md:text-6xl font-bold mb-4">Tech Stack 💻</h1>
+          <div class="flex flex-wrap gap-4 justify-content-center md:justify-content-start">
+            <i *ngFor="let tech of techStack" [class]="tech.icon + (tech.colored ? ' colored' : '')"
+              pTooltip="{{tech.tooltip}}" tooltipPosition="top" [attr.aria-label]="tech.tooltip" class="technology-icon"
+              style="font-size: 2.5rem; margin: 0.5rem;">
+            </i>
+          </div>
+          <div id="calendar" class="p-4"></div>
+        </div>
+      </div>
+    </p-card>
+  </div>
+</div>
+
+<p-dialog header="Contact Me" [modal]="true" [(visible)]="visible" [position]="position" [style]="{ width: '35rem' }">
+  <form [formGroup]="contactForm" (ngSubmit)="sendEmail()">
+    <div class="flex flex-column gap-4">
+      <span class="text-xl text-surface-500 dark:text-surface-400">Let's talk! 🙌</span>
+
+      <div class="flex flex-column gap-2">
+        <label for="name" class="font-semibold">Name</label>
+        <input pInputText id="name" formControlName="name" class="w-full"
+          [ngClass]="{'ng-invalid ng-dirty': isFieldInvalid('name')}" autocomplete="off"
+          placeholder="Enter your name" />
+      </div>
+
+      <div class="flex flex-column gap-2">
+        <label for="email" class="font-semibold">Email</label>
+        <input pInputText id="email" formControlName="email" class="w-full"
+          [ngClass]="{'ng-invalid ng-dirty': isFieldInvalid('email')}" autocomplete="off"
+          placeholder="example@email.com" />
+      </div>
+
+      <div class="flex flex-column gap-2">
+        <label for="message" class="font-semibold">Message</label>
+        <textarea pTextarea id="message" formControlName="message" rows="5" class="w-full"
+          [ngClass]="{'ng-invalid ng-dirty': isFieldInvalid('message')}"
+          placeholder="Tell me about what's on your mind..."></textarea>
+      </div>
+
+      <div class="flex justify-content-end gap-2 mt-4">
+        <p-button type="button" label="Cancel" icon="pi pi-times" severity="secondary" (click)="hideDialog()" />
+        <p-button type="submit" label="Send" icon="pi pi-send" />
+      </div>
+    </div>
+  </form>
+</p-dialog>
+<p-toast />

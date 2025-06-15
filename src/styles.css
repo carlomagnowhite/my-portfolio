@@ -2,6 +2,7 @@
 
 @import "primeicons/primeicons.css";
 @import "primeflex/primeflex.css";
+@import 'devicon/devicon.min.css';
 
 /* Estilos globales */
 :root {
@@ -10,8 +11,6 @@
 
 body {
     font-family: var(--font-family);
-    margin: 0;
-    padding: 0;
     background-color: var(--surface-ground);
     color: var(--text-color);
 }

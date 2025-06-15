@@ -1,0 +1,29 @@
+.technologies-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+}
+
+.technology-icon {
+  font-size: 2.5rem;
+  cursor: pointer;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.technology-icon:hover {
+  transform: scale(1.1);
+  opacity: 0.9;
+}
+
+/* Ajusta el tooltip para que combine con tu tema */
+:host ::ng-deep .p-tooltip {
+  font-size: 0.875rem;
+  background: var(--primary-color);
+  color: white;
+  padding: 0.5rem 1rem;
+}
+
+:host ::ng-deep .p-tooltip-arrow {
+  border-top-color: var(--primary-color) !important;
+}

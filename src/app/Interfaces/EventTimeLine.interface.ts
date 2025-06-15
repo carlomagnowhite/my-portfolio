@@ -6,5 +6,7 @@ export interface EventTimeLine {
     position: string;
     place: string;
     responsibilities: string[];
-    technologies: string[];
+    technologies: { icon: string, tooltip: string, colored: boolean }[];
+    iconStyle?: string[];
+    tooltip?: string;
 }

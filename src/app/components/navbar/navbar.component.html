@@ -1,5 +1,21 @@
-<div class="flex justify-content-center w-full">
-  <div class="w-full mx-3 md:mx-5 lg:mx-6 xl:mx-8">
-    <p-menubar [model]="menuItems" [styleClass]="'w-full'" />
+<p-toolbar class="navbar-sticky w-full px-3 md:px-5 lg:px-6 xl:px-8" styleClass="m-3 shadow-4">
+  <div class="flex align-items-center w-full justify-content-between">
+    <!-- Menú  -->
+    <div class="flex align-items-center">
+      <p-menubar [model]="menuItems" styleClass="border-none shadow-2 bg-transparent p-0" />
+    </div>
+    
+    <!-- Botón de tema -->
+    <div class="flex align-items-center">
+      <p-togglebutton
+        [(ngModel)]="dark"
+        [onIcon]="'pi pi-sun'"
+        [offIcon]="'pi pi-moon'"
+        [onLabel]="'Light'"
+        [offLabel]="'Dark'"
+        (onChange)="toggleDark()"
+        styleClass="ml-2"
+      ></p-togglebutton>
+    </div>
   </div>
-</div>
+</p-toolbar>
