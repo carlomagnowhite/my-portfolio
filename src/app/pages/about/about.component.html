@@ -29,14 +29,21 @@
     <p-card styleClass="mt-4 shadow-4" class="text-lg">
       <div class="grid">
         <div class="col-12">
-          <h1 class="text-4xl md:text-6xl font-bold mb-4">Tech Stack 💻</h1>
+          <p-divider>
+            <strong class="text-4xl">Tech Stack 💻</strong>
+          </p-divider>
           <div class="flex flex-wrap gap-4 justify-content-center md:justify-content-start">
             <i *ngFor="let tech of techStack" [class]="tech.icon + (tech.colored ? ' colored' : '')"
               pTooltip="{{tech.tooltip}}" tooltipPosition="top" [attr.aria-label]="tech.tooltip" class="technology-icon"
-              style="font-size: 2.5rem; margin: 0.5rem;">
+              style="font-size: 3.0rem; margin: 0.5rem;">
             </i>
           </div>
-          <div id="calendar" class="p-4"></div>
+          <p-divider class="mt-6">
+            <strong class="text-4xl">My last GitHub Contributions 📊</strong>
+          </p-divider>
+          <div class=" flex justify-content-center">
+            <img src="https://ghchart.rshah.org/carlomagnowhite" alt="GitHub Contributions" class="w-full h-full">
+          </div>
         </div>
       </div>
     </p-card>

@@ -1,5 +1,4 @@
-import { Component, inject, AfterViewInit, PLATFORM_ID, Inject } from '@angular/core';
-import { isPlatformBrowser } from '@angular/common';
+import { Component, inject } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { DialogModule } from 'primeng/dialog';
@@ -14,8 +13,7 @@ import { CommonModule } from '@angular/common';
 import { TagModule } from 'primeng/tag';
 import { TechStack } from '../../Interfaces/TechStack.interface';
 import { TooltipModule } from 'primeng/tooltip';
-import GitHubCalendar from 'github-calendar';
-import 'github-calendar/dist/github-calendar-responsive.css';
+import { DividerModule } from 'primeng/divider';
 
 @Component({
   selector: 'app-about',
@@ -31,13 +29,14 @@ import 'github-calendar/dist/github-calendar-responsive.css';
     ReactiveFormsModule,
     ToastModule,
     TagModule,
-    TooltipModule
+    TooltipModule,
+    DividerModule
   ],
   providers: [MessageService],
   templateUrl: './about.component.html',
   styleUrl: './about.component.css'
 })
-export class AboutComponent implements AfterViewInit {
+export class AboutComponent {
   techStack: TechStack[] = [
     { icon: 'devicon-spring-plain-wordmark', tooltip: 'Spring Boot', colored: true },
     { icon: 'devicon-java-plain-wordmark', tooltip: 'Java', colored: true },
@@ -64,24 +63,13 @@ export class AboutComponent implements AfterViewInit {
   githubCalendar: any;
 
   constructor(
-    private fb: FormBuilder,
-    @Inject(PLATFORM_ID) private platformId: Object
+    private fb: FormBuilder
   ) {
     this.contactForm = this.fb.group({
       name: new FormControl('', [Validators.required, Validators.minLength(2)]),
       email: new FormControl('', [Validators.required, Validators.email]),
       message: new FormControl('', [Validators.required, Validators.minLength(10)])
     });
-  }
-
-  ngAfterViewInit(): void {
-    if (isPlatformBrowser(this.platformId)) {
-      GitHubCalendar('#calendar', 'carlomagnowhite', {
-        responsive: true,
-        global_stats: false,
-        tooltips: true
-      });
-    }
   }
 
   showDialog(position: 'top' | 'bottom' | 'left' | 'right') {
