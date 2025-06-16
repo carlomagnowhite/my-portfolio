@@ -69,7 +69,7 @@ export class NavbarComponent implements OnInit {
   }
 
   downloadPdfFromUrl() {
-    const url = 'https://drive.google.com/file/d/10F379z8mnDuqibvdY6cZOf7vfuG1fU3v/view?usp=sharing';
+    const url = 'https://drive.google.com/file/d/1tUWRRWu8fyhUNobI6RH68ligvLqfkBmy/view?usp=sharing';
     window.open(url, '_blank');
   }
 }
