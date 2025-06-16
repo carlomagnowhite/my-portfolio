@@ -43,6 +43,10 @@ export class HomeComponent {
     this.visible = true;
   }
 
+  isMobile(): boolean {
+    return window.innerWidth < 768;
+  }
+
   constructor() {
     this.events = [
       {

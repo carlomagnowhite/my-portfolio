@@ -23,7 +23,7 @@
           </div>
         </div>
         <div class="col-12 md:col-6 flex align-items-center justify-content-center">
-          <p-image src="assets/images/avatar.png" alt="Avatar" width="400" [preview]="true" imageClass="border-round" />
+          <p-image src="assets/images/avatar.png" alt="Avatar" width="300" [preview]="true" imageClass="border-round" />
         </div>
       </div>
     </p-card>
@@ -33,43 +33,47 @@
 <div class="flex w-full mb-4">
   <div class="w-full mx-3 md:mx-5 lg:mx-6 xl:mx-8">
     <p-card header="My timeline of experience" styleClass="mt-4">
-      <p-timeline [value]="events" align="alternate" [align]="'alternate'">
-        <ng-template #marker let-event>
-          <span class="flex w-8 h-8 items-center justify-center text-white rounded-full z-10 shadow-sm"
-            [style]="{ 'background-color': event.color }">
-            <i [class]="event.icon"></i>
-          </span>
-        </ng-template>
-        <ng-template #content let-event>
-          <p-card [header]="event.position" [subheader]="event.place" styleClass="shadow-8">
-            <span class="text-lg text-gray-500 mb-2">{{ event.project }}</span> <br>
-            <span class="text-sm text-gray-500">{{ event.date }}</span>
-            <p-divider>
-              <strong>
-                🔧 Responsabilities
-              </strong>
-            </p-divider>
-            <p *ngFor="let responsibility of event.responsibilities">
-              ✔ {{ responsibility }}
-            </p>
-            <p-divider>
-              <strong>
-                💻 Technologies
-              </strong>
-            </p-divider>
-            <div class="mt-4">
-              <i *ngFor="let tech of event.technologies"
-              [class]="tech.icon + (tech.colored ? ' colored' : '')"
-              pTooltip="{{tech.tooltip}}"
-              tooltipPosition="top"
-              [attr.aria-label]="tech.tooltip"
-              class="technology-icon"
-              style="font-size: 3.5rem; margin-right: 1rem">
-            </i>
-            </div>
-          </p-card>
-        </ng-template>
-      </p-timeline>
+      <div class="flex flex-column md:flex-row gap-4">
+        <div class="w-full">
+          <p-timeline [value]="events" align="alternate" [align]="isMobile() ? 'left' : 'alternate'">
+            <ng-template #marker let-event>
+              <span class="flex w-10 h-10 items-center justify-center text-white rounded-full shadow-6"
+                [style]="{ 'background-color': event.color }">
+                <i [class]="event.icon"></i>
+              </span>
+            </ng-template>
+            <ng-template #content let-event>
+              <p-card [header]="event.position" [subheader]="event.place" styleClass="shadow-8 mt-5">
+                <span class="text-lg text-gray-500 mb-2">{{ event.project }}</span> <br>
+                <span class="text-sm text-gray-500">{{ event.date }}</span>
+                <p-divider class="mt-2">
+                  <strong>
+                    🔧 Responsabilities
+                  </strong>
+                </p-divider>
+                <p *ngFor="let responsibility of event.responsibilities">
+                  ✔ {{ responsibility }}
+                </p>
+                <p-divider>
+                  <strong>
+                    💻 Technologies
+                  </strong>
+                </p-divider>
+                <div class="mt-4 flex flex-wrap gap-2">
+                  <i *ngFor="let tech of event.technologies"
+                  [class]="tech.icon + (tech.colored ? ' colored' : '')"
+                  pTooltip="{{tech.tooltip}}"
+                  tooltipPosition="top"
+                  [attr.aria-label]="tech.tooltip"
+                  class="technology-icon"
+                  style="font-size: 2.5rem; margin-right: 1rem">
+                </i>
+                </div>
+              </p-card>
+            </ng-template>
+          </p-timeline>
+        </div>
+      </div>
     </p-card>
   </div>
 </div>
