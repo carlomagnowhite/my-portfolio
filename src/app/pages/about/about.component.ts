@@ -1,4 +1,5 @@
-import { Component, inject, AfterViewInit } from '@angular/core';
+import { Component, inject, AfterViewInit, PLATFORM_ID, Inject } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { DialogModule } from 'primeng/dialog';
@@ -62,7 +63,10 @@ export class AboutComponent implements AfterViewInit {
   messageService: MessageService = inject(MessageService);
   githubCalendar: any;
 
-  constructor(private fb: FormBuilder) {
+  constructor(
+    private fb: FormBuilder,
+    @Inject(PLATFORM_ID) private platformId: Object
+  ) {
     this.contactForm = this.fb.group({
       name: new FormControl('', [Validators.required, Validators.minLength(2)]),
       email: new FormControl('', [Validators.required, Validators.email]),
@@ -71,11 +75,13 @@ export class AboutComponent implements AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    GitHubCalendar('#calendar', 'carlomagnowhite', {
-      responsive: true,
-      global_stats: false,
-      tooltips: true
-    })
+    if (isPlatformBrowser(this.platformId)) {
+      GitHubCalendar('#calendar', 'carlomagnowhite', {
+        responsive: true,
+        global_stats: false,
+        tooltips: true
+      });
+    }
   }
 
   showDialog(position: 'top' | 'bottom' | 'left' | 'right') {
@@ -127,7 +133,7 @@ export class AboutComponent implements AfterViewInit {
   }
 
   downloadPdfFromUrl() {
-    const url = 'https://drive.google.com/file/d/10F379z8mnDuqibvdY6cZOf7vfuG1fU3v/view?usp=sharing';
+    const url = 'https://drive.google.com/file/d/1tUWRRWu8fyhUNobI6RH68ligvLqfkBmy/view?usp=sharing';
     window.open(url, '_blank');
   }
 
