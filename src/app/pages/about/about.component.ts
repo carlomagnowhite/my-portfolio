@@ -1,4 +1,4 @@
-import { Component, inject, AfterViewInit } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { DialogModule } from 'primeng/dialog';
@@ -13,8 +13,7 @@ import { CommonModule } from '@angular/common';
 import { TagModule } from 'primeng/tag';
 import { TechStack } from '../../Interfaces/TechStack.interface';
 import { TooltipModule } from 'primeng/tooltip';
-import GitHubCalendar from 'github-calendar';
-import 'github-calendar/dist/github-calendar-responsive.css';
+import { DividerModule } from 'primeng/divider';
 
 @Component({
   selector: 'app-about',
@@ -30,13 +29,14 @@ import 'github-calendar/dist/github-calendar-responsive.css';
     ReactiveFormsModule,
     ToastModule,
     TagModule,
-    TooltipModule
+    TooltipModule,
+    DividerModule
   ],
   providers: [MessageService],
   templateUrl: './about.component.html',
   styleUrl: './about.component.css'
 })
-export class AboutComponent implements AfterViewInit {
+export class AboutComponent {
   techStack: TechStack[] = [
     { icon: 'devicon-spring-plain-wordmark', tooltip: 'Spring Boot', colored: true },
     { icon: 'devicon-java-plain-wordmark', tooltip: 'Java', colored: true },
@@ -60,22 +60,15 @@ export class AboutComponent implements AfterViewInit {
   emailService: EmailService = inject(EmailService);
   contactForm: FormGroup;
   messageService: MessageService = inject(MessageService);
-  githubCalendar: any;
 
-  constructor(private fb: FormBuilder) {
+  constructor(
+    private fb: FormBuilder
+  ) {
     this.contactForm = this.fb.group({
       name: new FormControl('', [Validators.required, Validators.minLength(2)]),
       email: new FormControl('', [Validators.required, Validators.email]),
       message: new FormControl('', [Validators.required, Validators.minLength(10)])
     });
-  }
-
-  ngAfterViewInit(): void {
-    GitHubCalendar('#calendar', 'carlomagnowhite', {
-      responsive: true,
-      global_stats: false,
-      tooltips: true
-    })
   }
 
   showDialog(position: 'top' | 'bottom' | 'left' | 'right') {
@@ -113,7 +106,10 @@ export class AboutComponent implements AfterViewInit {
       severity: 'success',
       summary: 'Success',
       detail: message,
-      life: 3000
+      life: 3000,
+      closable: true,
+      icon: 'pi pi-check',
+      styleClass: 'my-toast-responsive'
     });
   }
 
@@ -122,12 +118,15 @@ export class AboutComponent implements AfterViewInit {
       severity: 'error',
       summary: 'Error',
       detail: message,
-      life: 3000
+      life: 3000,
+      closable: true,
+      icon: 'pi pi-exclamation-triangle',
+      styleClass: 'my-toast-responsive'
     });
   }
 
   downloadPdfFromUrl() {
-    const url = 'https://drive.google.com/file/d/10F379z8mnDuqibvdY6cZOf7vfuG1fU3v/view?usp=sharing';
+    const url = 'https://drive.google.com/file/d/1tUWRRWu8fyhUNobI6RH68ligvLqfkBmy/view?usp=sharing';
     window.open(url, '_blank');
   }
 

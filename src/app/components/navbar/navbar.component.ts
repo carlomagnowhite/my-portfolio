@@ -8,11 +8,13 @@ import { MenuItem } from 'primeng/api';
 import { ToggleButtonModule } from 'primeng/togglebutton';
 import { FormsModule } from '@angular/forms';
 import { ToolbarModule } from 'primeng/toolbar';
+import { TooltipModule } from 'primeng/tooltip';
+import { MenuModule } from 'primeng/menu';
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [MenubarModule, CommonModule, RouterModule, ToggleButtonModule, FormsModule, ToolbarModule],
+  imports: [MenubarModule, CommonModule, RouterModule, ToggleButtonModule, FormsModule, ToolbarModule, TooltipModule, MenuModule],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css'
 })
@@ -22,6 +24,7 @@ export class NavbarComponent implements OnInit {
   menuOptions: MenuOptions[] | undefined;
   supabaseService = inject(SupabaseService);
   router = inject(Router);
+
 
   ngOnInit(): void {
     this.getMenuOptions();
@@ -43,8 +46,6 @@ export class NavbarComponent implements OnInit {
     try {
       this.menuOptions = await this.supabaseService.getMenuOptions();
       this.transformMenuOptions();
-      console.log('Opciones originales:', this.menuOptions);
-      console.log('Opciones transformadas:', this.menuItems);
     } catch (error) {
       console.error('Error al obtener las opciones del menú:', error);
     }
@@ -56,7 +57,11 @@ export class NavbarComponent implements OnInit {
         label: option.option_name,
         icon: option.icon,
         routerLink: this.navbarResumeOrOthers( option.url ),
-        command: () => this.navbarResumeOrOthers( option.url ) === true ? this.downloadPdfFromUrl() : null
+        command: () => {
+          if (this.navbarResumeOrOthers(option.url) === true) {
+            this.downloadPdfFromUrl();
+          }
+        }
       }));
     }
   }
@@ -69,7 +74,7 @@ export class NavbarComponent implements OnInit {
   }
 
   downloadPdfFromUrl() {
-    const url = 'https://drive.google.com/file/d/10F379z8mnDuqibvdY6cZOf7vfuG1fU3v/view?usp=sharing';
+    const url = 'https://drive.google.com/file/d/1tUWRRWu8fyhUNobI6RH68ligvLqfkBmy/view?usp=sharing';
     window.open(url, '_blank');
   }
 }

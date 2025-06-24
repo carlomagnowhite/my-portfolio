@@ -14,3 +14,14 @@ body {
     background-color: var(--surface-ground);
     color: var(--text-color);
 }
+
+
+/* En móvil, hazlo más pequeño y centrado */
+@media (max-width: 600px) {
+  .my-toast-responsive {
+    max-width: 80%;
+    font-size: 0.85rem;
+    transform: translateX(10%) !important;
+    margin: 0 auto !important;
+  }
+}
