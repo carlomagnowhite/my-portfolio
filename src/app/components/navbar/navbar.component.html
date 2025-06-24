@@ -1,20 +1,21 @@
-<p-toolbar class="navbar-sticky w-full px-3 md:px-5 lg:px-6 xl:px-8" styleClass="m-3 shadow-4">
-  <div class="flex align-items-center w-full justify-content-between">
-    <!-- Menú  -->
-    <div class="flex align-items-center">
-      <p-menubar [model]="menuItems" styleClass="border-none shadow-2 bg-transparent p-0" />
+<p-toolbar class="w-full navbar-sticky lg:px-6 xl:px-8" styleClass="m-3 shadow-7 border-round-xl">
+  <div class="flex align-items-center justify-content-between w-full gap-2">
+    <!-- Menú horizontal siempre centrado -->
+    <div class="flex-grow-1">
+      <p-menubar [model]="menuItems" styleClass="border-none bg-transparent p-2 text-xl w-full justify-content-center" />
     </div>
-    
-    <!-- Botón de tema -->
-    <div class="flex align-items-center">
+    <!-- Botón de tema siempre a la derecha -->
+    <div class="flex align-items-center justify-content-end" >
       <p-togglebutton
         [(ngModel)]="dark"
-        [onIcon]="'pi pi-sun'"
-        [offIcon]="'pi pi-moon'"
-        [onLabel]="'Light'"
-        [offLabel]="'Dark'"
+        [onIcon]="'pi pi-moon'"
+        [offIcon]="'pi pi-sun'"
+        [onLabel]="'Dark'"
+        [offLabel]="'Light'"
         (onChange)="toggleDark()"
         styleClass="ml-2"
+        [pTooltip]="'Change theme'"
+        tooltipPosition="bottom"
       ></p-togglebutton>
     </div>
   </div>

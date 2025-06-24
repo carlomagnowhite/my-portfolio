@@ -60,7 +60,6 @@ export class AboutComponent {
   emailService: EmailService = inject(EmailService);
   contactForm: FormGroup;
   messageService: MessageService = inject(MessageService);
-  githubCalendar: any;
 
   constructor(
     private fb: FormBuilder
@@ -107,7 +106,10 @@ export class AboutComponent {
       severity: 'success',
       summary: 'Success',
       detail: message,
-      life: 3000
+      life: 3000,
+      closable: true,
+      icon: 'pi pi-check',
+      styleClass: 'my-toast-responsive'
     });
   }
 
@@ -116,7 +118,10 @@ export class AboutComponent {
       severity: 'error',
       summary: 'Error',
       detail: message,
-      life: 3000
+      life: 3000,
+      closable: true,
+      icon: 'pi pi-exclamation-triangle',
+      styleClass: 'my-toast-responsive'
     });
   }
 
