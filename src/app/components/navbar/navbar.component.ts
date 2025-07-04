@@ -42,13 +42,41 @@ export class NavbarComponent implements OnInit {
     localStorage.setItem('darkMode', this.dark.toString());
   }
 
-  async getMenuOptions(){
+  getMenuOptions(){
+    /*
     try {
       this.menuOptions = await this.supabaseService.getMenuOptions();
       this.transformMenuOptions();
     } catch (error) {
       console.error('Error al obtener las opciones del menú:', error);
-    }
+    }*/
+    this.menuOptions = [
+      {
+        id: 1,
+        option_name: 'Home',
+        icon: 'pi pi-home',
+        url: '/'
+      },
+      {
+        id: 2,
+        option_name: 'About',
+        icon: 'pi pi-user',
+        url: '/about'
+      },
+      {
+        id: 3,
+        option_name: 'Projects',
+        icon: 'pi pi-folder',
+        url: '/projects'
+      },
+      {
+        id: 4,
+        option_name: 'Resume',
+        icon: 'pi pi-file',
+        url: '/resume'
+      }
+    ]
+    this.transformMenuOptions();
   }
 
   transformMenuOptions() {
