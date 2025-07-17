@@ -5,7 +5,13 @@ import { DialogModule } from 'primeng/dialog';
 import { ImageModule } from 'primeng/image';
 import { InputTextModule } from 'primeng/inputtext';
 import { Textarea } from 'primeng/textarea';
-import { ReactiveFormsModule, FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
+import {
+  ReactiveFormsModule,
+  FormGroup,
+  FormBuilder,
+  FormControl,
+  Validators,
+} from '@angular/forms';
 import { EmailService } from '../../services/email.service';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
@@ -14,6 +20,17 @@ import { TagModule } from 'primeng/tag';
 import { TechStack } from '../../Interfaces/TechStack.interface';
 import { TooltipModule } from 'primeng/tooltip';
 import { DividerModule } from 'primeng/divider';
+import { FilesAchievements } from '../../Interfaces/FilesAchievements.interface';
+import { Pipe, PipeTransform } from '@angular/core';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+
+@Pipe({ name: 'safe' })
+export class SafePipe implements PipeTransform {
+  constructor(private sanitizer: DomSanitizer) {}
+  transform(url: string): SafeResourceUrl {
+    return this.sanitizer.bypassSecurityTrustResourceUrl(url);
+  }
+}
 
 @Component({
   selector: 'app-about',
@@ -30,20 +47,29 @@ import { DividerModule } from 'primeng/divider';
     ToastModule,
     TagModule,
     TooltipModule,
-    DividerModule
+    DividerModule,
+    SafePipe,
   ],
   providers: [MessageService],
   templateUrl: './about.component.html',
-  styleUrl: './about.component.css'
+  styleUrl: './about.component.css',
 })
 export class AboutComponent {
   techStack: TechStack[] = [
-    { icon: 'devicon-spring-plain-wordmark', tooltip: 'Spring Boot', colored: true },
+    {
+      icon: 'devicon-spring-plain-wordmark',
+      tooltip: 'Spring Boot',
+      colored: true,
+    },
     { icon: 'devicon-java-plain-wordmark', tooltip: 'Java', colored: true },
     { icon: 'devicon-nestjs-plain', tooltip: 'NestJS', colored: true },
     { icon: 'devicon-typescript-plain', tooltip: 'TypeScript', colored: true },
     { icon: 'devicon-javascript-plain', tooltip: 'JavaScript', colored: true },
-    { icon: 'devicon-postgresql-plain-wordmark', tooltip: 'PostgreSQL', colored: true },
+    {
+      icon: 'devicon-postgresql-plain-wordmark',
+      tooltip: 'PostgreSQL',
+      colored: true,
+    },
     { icon: 'devicon-mysql-plain-wordmark', tooltip: 'MySQL', colored: true },
     { icon: 'devicon-oracle-plain', tooltip: 'Oracle', colored: true },
     { icon: 'devicon-docker-plain-wordmark', tooltip: 'Docker', colored: true },
@@ -55,19 +81,62 @@ export class AboutComponent {
     { icon: 'devicon-css3-plain-wordmark', tooltip: 'CSS3', colored: true },
     { icon: 'devicon-supabase-plain', tooltip: 'Supabase', colored: true },
   ];
+  filesAchievements: FilesAchievements[] = [
+    {
+      name: 'Angular course with modules',
+      url: 'assets/files/cer-angular-modulos.pdf',
+      description: 'Angular course in DevTalles Platform by Fernando Herrera Instructor.',
+      image: 'assets/images/cer-angular-modulos.png',
+      tags: ['Certificate', 'Tech Course'],
+    },
+    {
+      name: 'HatunSoft programming contest organizer',
+      url: 'assets/files/hatunsoft-organizador.pdf',
+      description:
+        'Certificate of organizer of the HatunSoft programming contest',
+      image: 'assets/images/hatunsoft.png',
+      tags: ['Certificate', 'Tech Course', 'Organizer'],
+    },
+    {
+      name: 'Conference in computer science, electronics and industrial engineering',
+      url: 'assets/files/congreso-fisei.PDF',
+      description:
+        'Conference in computer science, electronics and industrial engineering',
+      image: 'assets/images/congreso.png',
+      tags: ['Certificate', 'Tech Course', 'Conference'],
+    },
+    {
+      name: 'SISREC V2 - Empresa Eléctrica Ambato Regional Centro Norte S.A. (EEASA)',
+      url: 'assets/files/sisrec-articulo.pdf',
+      description:
+        'SISREC V2 - Made with Angular, Spring Boot, ORACLE and WebSockets. This project was made for the company EEASA.',
+      image: 'assets/images/sisrec.jpg',
+      tags: ['Article', 'Developer'],
+    },
+    {
+      name: 'Angular course version 2025',
+      url: 'assets/files/cer-angular-nuevo.pdf',
+      description: 'Angular course in DevTalles Platform by Fernando Herrera Instructor.',
+      image: 'assets/images/cer-angular-nuevo.png',
+      tags: ['Certificate', 'Tech Course'],
+    },
+  ];
   visible: boolean = false;
   position: 'top' | 'bottom' | 'left' | 'right' = 'top';
   emailService: EmailService = inject(EmailService);
   contactForm: FormGroup;
   messageService: MessageService = inject(MessageService);
+  pdfVisible: boolean = false;
+  pdfUrl: string = '';
 
-  constructor(
-    private fb: FormBuilder
-  ) {
+  constructor(private fb: FormBuilder) {
     this.contactForm = this.fb.group({
       name: new FormControl('', [Validators.required, Validators.minLength(2)]),
       email: new FormControl('', [Validators.required, Validators.email]),
-      message: new FormControl('', [Validators.required, Validators.minLength(10)])
+      message: new FormControl('', [
+        Validators.required,
+        Validators.minLength(10),
+      ]),
     });
   }
 
@@ -109,7 +178,7 @@ export class AboutComponent {
       life: 3000,
       closable: true,
       icon: 'pi pi-check',
-      styleClass: 'my-toast-responsive'
+      styleClass: 'my-toast-responsive',
     });
   }
 
@@ -121,12 +190,13 @@ export class AboutComponent {
       life: 3000,
       closable: true,
       icon: 'pi pi-exclamation-triangle',
-      styleClass: 'my-toast-responsive'
+      styleClass: 'my-toast-responsive',
     });
   }
 
   downloadPdfFromUrl() {
-    const url = 'https://drive.google.com/file/d/1tUWRRWu8fyhUNobI6RH68ligvLqfkBmy/view?usp=sharing';
+    const url =
+      'https://drive.google.com/file/d/1tUWRRWu8fyhUNobI6RH68ligvLqfkBmy/view?usp=sharing';
     window.open(url, '_blank');
   }
 
@@ -151,6 +221,21 @@ export class AboutComponent {
   // Método para verificar si un campo es válido
   isFieldInvalid(controlName: string): boolean {
     const control = this.contactForm.get(controlName);
-    return control ? (control.invalid && (control.dirty || control.touched)) : false;
+    return control
+      ? control.invalid && (control.dirty || control.touched)
+      : false;
+  }
+
+  viewPdf(url: string) {
+    if (!this.isMobile()) {
+      this.pdfUrl = url;
+      this.pdfVisible = true;
+    } else {
+      window.open(url, '_blank');
+    }
+  }
+
+  isMobile(): boolean {
+    return window.innerWidth <= 800 || window.innerHeight <= 700;
   }
 }
