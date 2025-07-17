@@ -20,3 +20,106 @@
   }
 }
 
+.pdf-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(30, 30, 30, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  margin: 0;
+  padding: 0;
+}
+
+.pdf-modal iframe {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+  max-width: 90vw;
+  max-height: 85vh;
+  width: 60%;
+  height: 80%;
+  border: none;
+  transition: box-shadow 0.2s;
+  margin: 0;
+  padding: 0;
+}
+
+.pdf-modal button {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  z-index: 2100;
+  background: #fff;
+  color: #222;
+  border: none;
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  font-size: 2rem;
+  font-weight: bold;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.92;
+  transition: background 0.2s, color 0.2s, opacity 0.2s, box-shadow 0.2s;
+}
+
+.pdf-modal button:hover,
+.pdf-modal button:focus {
+  background: #e53935;
+  color: #fff;
+  opacity: 1;
+  box-shadow: 0 4px 16px rgba(229,57,53,0.18);
+  outline: none;
+}
+
+.pdf-modal button i {
+  font-size: 1.5em;
+}
+
+@media (max-width: 900px) {
+  .pdf-modal iframe {
+    width: 98vw;
+    height: 80vh;
+    max-width: 98vw;
+    max-height: 80vh;
+  }
+  .pdf-modal button {
+    top: 12px;
+    right: 12px;
+    width: 38px;
+    height: 38px;
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .pdf-modal {
+    align-items: flex-start;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+  .pdf-modal iframe {
+    width: 100vw;
+    height: 100vh;
+    max-width: 100vw;
+    max-height: 100vh;
+    border-radius: 0;
+    box-shadow: none;
+  }
+  .pdf-modal button {
+    top: 8px;
+    right: 8px;
+    width: 36px;
+    height: 36px;
+    font-size: 1.4rem;
+  }
+}
+

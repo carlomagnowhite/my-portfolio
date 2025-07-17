@@ -16,7 +16,7 @@
           </div>
         </div>
         <div class="col-12 md:col-6 flex align-items-center justify-content-center mt-6 md:mt-0">
-          <p-image src="assets/images/lofi.png" alt="Developer-Lofi" width="100%" [preview]="true"
+          <p-image src="https://tenor.com/es/view/pixel-gif-13107014964836923962.gif" alt="Developer-Lofi" width="100%" [preview]="true"
             imageClass="border-round shadow-4" />
         </div>
       </div>
@@ -30,9 +30,61 @@
       <div class="grid">
         <div class="col-12">
           <p-divider>
+            <strong class="text-4xl">Achievements and certifications 🎉</strong>
+          </p-divider>
+
+          <div class="mb-4 p-4">
+            <div class="grid">
+              <div
+                *ngFor="let file of filesAchievements"
+                class="col-12 sm:col-6 lg:col-4 flex justify-content-center"
+              >
+                <p-card [style]="{ width: '100%' }">
+                  <ng-template #header>
+                    <img
+                      alt="Card"
+                      class="w-full h-16rem sm:h-16rem md:h-18rem object-cover border-round-top"
+                      [src]="file.image"
+                    />
+                  </ng-template>
+                  <ng-template #title>
+                    <span class="block text-lg font-bold text-justify">{{ file.name }}</span>
+                  </ng-template>
+                  <div class="flex flex-wrap gap-2 mt-2 mb-2">
+                    <p-tag *ngFor="let tag of file.tags" [value]="tag" severity="info" />
+                  </div>
+                  <p class="text-sm text-justify mb-1 px-2">
+                    {{ file.description }}
+                  </p>
+                  <ng-template #footer>
+                    <div class="flex gap-2 mt-2">
+                      <p-button label="View PDF" icon="pi pi-file-pdf" class="w-full" styleClass="w-full" (click)="viewPdf(file.url)" />
+                    </div>
+                  </ng-template>
+                </p-card>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </p-card>
+  </div>
+</div>
+
+<div *ngIf="pdfVisible" class="pdf-modal">
+  <button (click)="pdfVisible = false">&times;</button>
+  <iframe [src]="pdfUrl | safe" width="100%" height="100%" style="border: 1px solid none;"></iframe>
+</div>
+
+<div class="flex w-full">
+  <div class="w-full mx-3 md:mx-5 lg:mx-6 xl:mx-8">
+    <p-card styleClass="mt-4 shadow-4" class="text-lg">
+      <div class="grid">
+        <div class="col-12">
+          <p-divider>
             <strong class="text-4xl">Tech Stack 💻</strong>
           </p-divider>
-          <div class="flex flex-wrap gap-4 justify-content-center md:justify-content-start">
+          <div class="flex flex-wrap gap-4 justify-content-center md:justify-content-start lg:justify-content-center">
             <i *ngFor="let tech of techStack" [class]="tech.icon + (tech.colored ? ' colored' : '')"
               pTooltip="{{tech.tooltip}}" tooltipPosition="top" [attr.aria-label]="tech.tooltip" class="technology-icon"
               style="font-size: 3.0rem; margin: 0.5rem;">
