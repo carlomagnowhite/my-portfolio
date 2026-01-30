@@ -1,6 +1,5 @@
 import { Component, Inject, inject, OnInit } from '@angular/core';
 import { MenubarModule } from 'primeng/menubar';
-import { SupabaseService } from '../../services/supabase.service';
 import { MenuOptions } from '../../Interfaces/MenuOptions.interface';
 import { CommonModule, DOCUMENT } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
@@ -22,7 +21,6 @@ export class NavbarComponent implements OnInit {
   dark:boolean = false;
   menuItems: MenuItem[] = [];
   menuOptions: MenuOptions[] | undefined;
-  supabaseService = inject(SupabaseService);
   router = inject(Router);
 
 
@@ -43,13 +41,6 @@ export class NavbarComponent implements OnInit {
   }
 
   getMenuOptions(){
-    /*
-    try {
-      this.menuOptions = await this.supabaseService.getMenuOptions();
-      this.transformMenuOptions();
-    } catch (error) {
-      console.error('Error al obtener las opciones del menú:', error);
-    }*/
     this.menuOptions = [
       {
         id: 1,

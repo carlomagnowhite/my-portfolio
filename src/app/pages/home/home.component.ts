@@ -50,7 +50,49 @@ export class HomeComponent {
   constructor() {
     this.events = [
       {
-        date: '2025 March - Present',
+        date: '2025 December - Present',
+        icon: 'pi pi-code',
+        position: 'FullStack Developer',
+        place: 'J2k Advanced Bussines Solutions',
+        responsibilities: [
+          'Software development',
+          'Database design, maintenance, optimization and implementation',
+          'Integrate new software functionalities',
+          'API documentation',
+          'PL/pgSQL development in PostgreSQL Database'
+        ],
+        technologies: [
+          { icon: 'devicon-java-plain-wordmark', tooltip: 'Java', colored: true },
+          { icon: 'devicon-postgresql-plain-wordmark', tooltip: 'PostgreSQL', colored: true },
+          { icon: 'devicon-angular-plain', tooltip: 'Angular', colored: false }
+        ],
+      },
+      {
+        date: '2025 August - 2026 January',
+        icon: 'pi pi-code',
+        project: 'ASO EEASA S.A. economic administration PWA (Progressive Web Application)',
+        position: 'FullStack Developer',
+        place: 'Empresa Eléctrica Ambato Regional Centro Norte S.A. (EEASA)',
+        responsibilities: [
+          'Client communication and requirements analysis',
+          'API development in Spring Boot with Java',
+          'Frontend development in Angular',
+          'Database design, optimization and implementation',
+          'API documentation',
+          'PL/pgSQL development in PostgreSQL Database',
+          'Web Socket implementation for notifications in real time',
+          'Integration with external services in Angular'
+        ],
+        technologies: [
+          { icon: 'devicon-spring-plain-wordmark', tooltip: 'Spring Boot', colored: true },
+          { icon: 'devicon-java-plain-wordmark', tooltip: 'Java', colored: true },
+          { icon: 'devicon-postgresql-plain-wordmark', tooltip: 'PostgreSQL', colored: true },
+          { icon: 'devicon-socketio-original', tooltip: 'Socket.IO', colored: false },
+          { icon: 'devicon-angular-plain', tooltip: 'Angular', colored: false }
+        ],
+      },
+      {
+        date: '2025 March - September',
         icon: 'pi pi-code',
         project: 'SISREC V2',
         position: 'Backend Developer',
